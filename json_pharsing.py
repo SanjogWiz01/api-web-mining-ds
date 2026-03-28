@@ -12,3 +12,4 @@ for user in users:
     city = user['address']['city']
 
     print(f"Name: {name}, Email: {email}, City: {city}")
+    # phasing the json files and learnig api
