@@ -11,4 +11,4 @@ df = pd.DataFrame(data)
 print(df.head())
 
 # Show structure
-print(df.info())
+print(df.info()) # pandas
