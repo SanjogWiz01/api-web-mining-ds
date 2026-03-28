@@ -1,7 +1,7 @@
 import requests
 
 # Public API (no key needed)
-url = "https://jsonplaceholder.typicode.com/posts"
+url = "https://jsonplaceholder.typicode.com/posts" # public api 
 
 response = requests.get(url)
 
