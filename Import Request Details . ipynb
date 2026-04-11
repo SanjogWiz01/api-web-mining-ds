@@ -20,7 +20,7 @@ FILE 2: params_headers_auth.py
 
 =========================
 
-import requests
+import requests 
 
 url = "https://httpbin.org/get" params = {"name": "Sanjog", "age": 18} headers = {"User-Agent": "MyApp/1.0"}
 
