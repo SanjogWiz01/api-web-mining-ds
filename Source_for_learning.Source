@@ -81,7 +81,7 @@ data = response.json()
 
 Access JSON
 
-print("Title:", data[0]['title'])
+print("Title:", data[0]['title']) 
 
 Convert Python -> JSON
 
