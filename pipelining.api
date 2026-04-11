@@ -1,0 +1,105 @@
+""" ADVANCED DATA SCIENCE PIPELINES (REAL-WORLD)
+
+This file contains multiple pipelines used in industry.
+
+Pipelines Included:
+
+1. API → Pandas → Visualization
+
+
+2. API → Data Cleaning → Feature Engineering
+
+
+3. Streaming-like Pipeline (Loop Fetch)
+
+
+4. ML Pipeline (Train + Predict)
+
+
+5. Batch Processing Pipeline """
+
+
+
+=========================
+
+1. API → PANDAS → VISUALIZATION
+
+=========================
+
+import requests import pandas as pd import matplotlib.pyplot as plt
+
+url = "https://jsonplaceholder.typicode.com/posts" data = requests.get(url).json()
+
+df = pd.DataFrame(data)
+
+Count posts per user
+
+counts = df['userId'].value_counts()
+
+plt.bar(counts.index, counts.values) plt.title("Posts per User") plt.xlabel("User ID") plt.ylabel("Posts") plt.show()
+
+=========================
+
+2. FEATURE ENGINEERING PIPELINE
+
+=========================
+
+url = "https://randomuser.me/api/?results=20" data = requests.get(url).json()['results']
+
+df = pd.DataFrame(data)
+
+Extract features
+
+df['full_name'] = df['name'].apply(lambda x: x['first'] + " " + x['last']) df['country'] = df['location'].apply(lambda x: x['country'])
+
+df_clean = df[['full_name', 'email', 'country']]
+
+print(df_clean.head())
+
+=========================
+
+3. STREAMING-LIKE PIPELINE
+
+=========================
+
+import time
+
+for i in range(3): data = requests.get("https://randomuser.me/api/").json() name = data['results'][0]['name']['first'] print(f"New User Fetched: {name}") time.sleep(2)
+
+=========================
+
+4. MACHINE LEARNING PIPELINE
+
+=========================
+
+from sklearn.model_selection import train_test_split from sklearn.linear_model import LinearRegression import numpy as np
+
+Sample data
+
+X = np.array([[1], [2], [3], [4], [5]]) y = np.array([3, 6, 9, 12, 15])
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+model = LinearRegression() model.fit(X_train, y_train)
+
+pred = model.predict(X_test) print("Predictions:", pred)
+
+=========================
+
+5. BATCH PROCESSING PIPELINE
+
+=========================
+
+urls = [ "https://jsonplaceholder.typicode.com/posts", "https://jsonplaceholder.typicode.com/comments" ]
+
+all_data = []
+
+for url in urls: res = requests.get(url) all_data.extend(res.json())
+
+batch_df = pd.DataFrame(all_data)
+
+print("Total Records:", len(batch_df))
+
+batch_df.to_csv("batch_data.csv", index=False)
+
+print("Batch processing complete.")
