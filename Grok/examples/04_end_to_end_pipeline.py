@@ -2,8 +2,8 @@
 
 from pathlib import Path
 
-from api_web_mining_ds import ApiClient, ApiClientConfig
-from api_web_mining_ds.pipeline import collect_posts_project
+from Grok.api_web_mining_ds import ApiClient, ApiClientConfig
+from Grok.api_web_mining_ds.pipeline import collect_posts_project
 
 
 def main() -> None:

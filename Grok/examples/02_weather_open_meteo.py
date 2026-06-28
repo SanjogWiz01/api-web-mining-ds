@@ -1,6 +1,6 @@
 """Collect a small weather dataset from Open-Meteo's public API."""
 
-from api_web_mining_ds import ApiClient, ApiClientConfig, normalize_json
+from Grok.api_web_mining_ds import ApiClient, ApiClientConfig, normalize_json
 
 
 def main() -> None:

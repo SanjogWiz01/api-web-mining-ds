@@ -1,6 +1,6 @@
 """Fetch posts from JSONPlaceholder and normalize them into a DataFrame."""
 
-from api_web_mining_ds import ApiClient, ApiClientConfig, normalize_json, profile_dataframe
+from Grok.api_web_mining_ds import ApiClient, ApiClientConfig, normalize_json, profile_dataframe
 
 
 def main() -> None:

@@ -1,7 +1,7 @@
 import pandas as pd
 
-from api_web_mining_ds.pipeline import clean_news_articles, collect_posts_project
-from api_web_mining_ds.storage import load_sqlite_table, read_json, save_csv, save_json, save_sqlite
+from Grok.api_web_mining_ds.pipeline import clean_news_articles, collect_posts_project
+from Grok.api_web_mining_ds.storage import load_sqlite_table, read_json, save_csv, save_json, save_sqlite
 
 
 class FakeClient:

@@ -1,4 +1,4 @@
-from api_web_mining_ds.normalize import flatten_records, normalize_json, select_fields
+from Grok.api_web_mining_ds.normalize import flatten_records, normalize_json, select_fields
 
 
 def test_normalize_json_flattens_nested_records():

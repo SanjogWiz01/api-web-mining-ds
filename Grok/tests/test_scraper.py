@@ -1,4 +1,4 @@
-from api_web_mining_ds.scraper import HtmlScraper, RobotsPolicy, build_next_page_urls
+from Grok.api_web_mining_ds.scraper import HtmlScraper, RobotsPolicy, build_next_page_urls
 
 
 HTML = """

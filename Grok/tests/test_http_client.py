@@ -3,7 +3,7 @@ from __future__ import annotations
 import pytest
 import requests
 
-from api_web_mining_ds.http_client import ApiClient, ApiClientConfig, ApiError, RateLimitError
+from Grok.api_web_mining_ds.http_client import ApiClient, ApiClientConfig, ApiError, RateLimitError
 
 
 class FakeResponse:

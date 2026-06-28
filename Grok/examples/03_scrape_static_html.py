@@ -1,6 +1,6 @@
 """Mine links, cards, and tables from static HTML."""
 
-from api_web_mining_ds import HtmlScraper
+from Grok.api_web_mining_ds import HtmlScraper
 
 
 HTML = """

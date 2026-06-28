@@ -6,9 +6,9 @@ import sys
 
 import pandas as pd
 
-from api_web_mining_ds.async_client import AsyncApiConfig, fetch_json_many
-from api_web_mining_ds.profiling import profile_dataframe
-from api_web_mining_ds.text_mining import keyword_counts, tokenize, top_terms
+from Grok.api_web_mining_ds.async_client import AsyncApiConfig, fetch_json_many
+from Grok.api_web_mining_ds.profiling import profile_dataframe
+from Grok.api_web_mining_ds.text_mining import keyword_counts, tokenize, top_terms
 
 
 def test_profile_dataframe_reports_missing_and_unique_counts():
@@ -66,7 +66,7 @@ def test_fetch_json_many_uses_async_httpx_client(monkeypatch):
 
 
 def test_cli_smoke_runs_with_mocked_pipeline(monkeypatch, capsys):
-    from api_web_mining_ds import cli
+    from Grok.api_web_mining_ds import cli
 
     class Outputs:
         raw_json = Path("raw.json")
