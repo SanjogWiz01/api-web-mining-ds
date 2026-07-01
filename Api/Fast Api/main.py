@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="My FastAPI App",
+    title="My FastAPI App", # this is ommment 
     description="A learning project for FastAPI",
     version="1.0.0"
 )
