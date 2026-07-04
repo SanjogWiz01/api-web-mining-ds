@@ -16,7 +16,7 @@ def root():
 
 
 @app.get("/tasks")
-def list_tasks(done: Optional[bool] = None):
+def list_tasks(done: Optional[bool] = None): # comment ho la 
     if done is None:
         return list(fake_db.values())
     return [t for t in fake_db.values() if t["done"] == done]
