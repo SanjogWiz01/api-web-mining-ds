@@ -194,9 +194,7 @@ def delete_item(item_id: int):
     }
 
 
-# ============================================================================
-# SEARCH ENDPOINT (Query parameters)
-# ============================================================================
+#
 
 @app.get("/items/search/by-name", tags=["Items"])
 def search_items(q: str = Query(..., min_length=1, max_length=50)):
