@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Mastery Guide — Advanced API & Web Mining for Data Science</title>
+  <meta name="description" content="A comprehensive, interactive guide to mastering APIs in Python. Learn HTTP basics, authentication, endpoints, rate limiting, security, FastAPI, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ════ NAVIGATION ════ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">API<span class="accent">Mastery</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#topics" class="nav-link">Topics</a></li>
+      <li><a href="#http-basics" class="nav-link">HTTP</a></li>
+      <li><a href="#auth" class="nav-link">Auth</a></li>
+      <li><a href="#endpoints" class="nav-link">Endpoints</a></li>
+      <li><a href="#error-handling" class="nav-link">Errors</a></li>
+      <li><a href="#rate-limits" class="nav-link">Rate Limits</a></li>
+      <li><a href="#security" class="nav-link">Security</a></li>
+      <li><a href="#fastapi" class="nav-link">FastAPI</a></li>
+      <li><a href="#playground" class="nav-link nav-cta">Playground</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+  <div class="container hero-content">
+    <div class="hero-badge">📡 Advanced API &amp; Web Mining · Data Science</div>
+    <h1 class="hero-title">
+      Master <span class="gradient-text">APIs</span><br />from Zero to Production
+    </h1>
+    <p class="hero-subtitle">
+      A complete, hands-on guide to HTTP, authentication, endpoints, rate limiting, 
+      JSON, security, FastAPI, and automated testing — all backed by real Python code.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="stat-num">10</span>
+        <span class="stat-label">Core Topics</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">30+</span>
+        <span class="stat-label">Code Examples</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">5</span>
+        <span class="stat-label">Live Demos</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">∞</span>
+        <span class="stat-label">Concepts</span>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#topics" class="btn btn-primary">Start Learning →</a>
+      <a href="#playground" class="btn btn-secondary">Try Playground</a>
+    </div>
+  </div>
+  <div class="hero-code-preview">
+    <div class="code-window">
+      <div class="code-window-header">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="code-window-title">api_quickstart.py</span>
+      </div>
+      <pre class="code-window-body"><code><span class="kw">import</span> requests
+
+<span class="cm"># 🚀 Your first API call</span>
+url = <span class="str">"https://jsonplaceholder.typicode.com/posts/1"</span>
+response = requests.get(url, timeout=<span class="num">10</span>)
+
+<span class="cm"># ✅ Always check the status code</span>
+response.raise_for_status()
+data = response.json()
+
+print(data[<span class="str">"title"</span>])  <span class="cm"># → "sunt aut facere repellat..."</span>
+print(data[<span class="str">"userId"</span>]) <span class="cm"># → 1</span></code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TOPICS OVERVIEW ════ -->
+<section class="section topics-section" id="topics">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">📚 Curriculum</div>
+      <h2 class="section-title">10 Topics That Cover <span class="gradient-text">Everything</span></h2>
+      <p class="section-desc">Each topic maps directly to a Python file in the project. Read, run, learn.</p>
+    </div>
+    <div class="topics-grid">
+      <a href="#http-basics" class="topic-card topic-1">
+        <div class="topic-num">01</div>
+        <div class="topic-icon">🌐</div>
+        <h3>HTTP Basics</h3>
+        <p>GET, POST, PUT, DELETE — the four verbs that power all APIs.</p>
+        <div class="topic-tag">Foundation</div>
+      </a>
+      <a href="#auth" class="topic-card topic-2">
+        <div class="topic-num">02</div>
+        <div class="topic-icon">🔐</div>
+        <h3>Authentication</h3>
+        <p>API keys, Bearer tokens, Basic Auth, and OAuth2 flows.</p>
+        <div class="topic-tag">Security</div>
+      </a>
+      <a href="#endpoints" class="topic-card topic-3">
+        <div class="topic-num">03</div>
+        <div class="topic-icon">🎯</div>
+        <h3>Endpoints</h3>
+        <p>Base URLs, path parameters, query strings, nested resources.</p>
+        <div class="topic-tag">Structure</div>
+      </a>
+      <a href="#headers" class="topic-card topic-4">
+        <div class="topic-num">04</div>
+        <div class="topic-icon">📋</div>
+        <h3>Request Headers</h3>
+        <p>Content-Type, Authorization, User-Agent, and custom headers.</p>
+        <div class="topic-tag">Protocol</div>
+      </a>
+      <a href="#error-handling" class="topic-card topic-5">
+        <div class="topic-num">05</div>
+        <div class="topic-icon">🛡️</div>
+        <h3>Error Handling</h3>
+        <p>Status codes, raise_for_status, exception patterns, retries.</p>
+        <div class="topic-tag">Resilience</div>
+      </a>
+      <a href="#rate-limits" class="topic-card topic-6">
+        <div class="topic-num">06</div>
+        <div class="topic-icon">⏱️</div>
+        <h3>Rate Limits</h3>
+        <p>Exponential backoff, throttling, header inspection, caching.</p>
+        <div class="topic-tag">Politeness</div>
+      </a>
+      <a href="#json" class="topic-card topic-7">
+        <div class="topic-num">07</div>
+        <div class="topic-icon">📦</div>
+        <h3>JSON &amp; Data</h3>
+        <p>Serialize, deserialize, validate, and save JSON responses.</p>
+        <div class="topic-tag">Data</div>
+      </a>
+      <a href="#security" class="topic-card topic-8">
+        <div class="topic-num">08</div>
+        <div class="topic-icon">🔒</div>
+        <h3>Security</h3>
+        <p>.env pattern, HTTPS enforcement, safe logging, key rotation.</p>
+        <div class="topic-tag">Best Practice</div>
+      </a>
+      <a href="#docs-reading" class="topic-card topic-9">
+        <div class="topic-num">09</div>
+        <div class="topic-icon">📖</div>
+        <h3>API Docs</h3>
+        <p>Reading OpenAPI specs, Swagger, ReDoc, schema validation.</p>
+        <div class="topic-tag">Workflow</div>
+      </a>
+      <a href="#testing" class="topic-card topic-10">
+        <div class="topic-num">10</div>
+        <div class="topic-icon">🧪</div>
+        <h3>Testing Tools</h3>
+        <p>curl, Postman, httpie, automated test suites in Python.</p>
+        <div class="topic-tag">Quality</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ HTTP BASICS ════ -->
+<section class="section detail-section" id="http-basics">
+  <div class="container">
+    <div class="detail-header">
+      <span class="topic-badge badge-1">Topic 01 · Foundation</span>
+      <h2 class="detail-title">🌐 HTTP Basics</h2>
+      <p class="detail-desc">HTTP (HyperText Transfer Protocol) is the backbone of all web communication. Every API call is an HTTP request. Master these four methods and you've mastered the foundation.</p>
+    </div>
+
+    <div class="methods-grid">
+      <div class="method-card method-get">
+        <div class="method-badge">GET</div>
+        <h4>Read / Retrieve</h4>
+        <p>Fetch data from the server. Safe and idempotent — calling it 100 times has the same effect as calling it once.</p>
+        <div class="method-example">
+          <code>GET /posts/1</code>
+          <span class="status-badge status-200">200 OK</span>
+        </div>
+      </div>
+      <div class="method-card method-post">
+        <div class="method-badge">POST</div>
+        <h4>Create New Resource</h4>
+        <p>Send data to create a new resource. Not idempotent — each call creates a new record.</p>
+        <div class="method-example">
+          <code>POST /posts</code>
+          <span class="status-badge status-201">201 Created</span>
+        </div>
+      </div>
+      <div class="method-card method-put">
+        <div class="method-badge">PUT</div>
+        <h4>Update / Replace</h4>
+        <p>Replace an entire resource. Idempotent — the resource ends up in the same state regardless of repetition.</p>
+        <div class="method-example">
+          <code>PUT /posts/1</code>
+          <span class="status-badge status-200">200 OK</span>
+        </div>
+      </div>
+      <div class="method-card method-delete">
+        <div class="method-badge">DELETE</div>
+        <h4>Remove Resource</h4>
+        <p>Delete a resource permanently. Idempotent — deleting something that's already deleted is still a success.</p>
+        <div class="method-example">
+          <code>DELETE /posts/1</code>
+          <span class="status-badge status-200">200 OK</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block-wrapper">
+      <div class="code-block-header">
+        <span class="code-lang">Python · 01_http_basics.py</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <pre class="code-block"><code><span class="kw">import</span> requests
+
+BASE_URL = <span class="str">"https://jsonplaceholder.typicode.com"</span>
+
+<span class="cm"># ── GET: Retrieve posts ───────────────────────</span>
+<span class="kw">def</span> <span class="fn">demo_get</span>():
+    response = requests.get(f<span class="str">"{BASE_URL}/posts"</span>, params={<span class="str">"_limit"</span>: <span class="num">3</span>})
+    print(f<span class="str">"Status: {response.status_code}"</span>)      <span class="cm"># → 200</span>
+    print(f<span class="str">"URL: {response.url}"</span>)               <span class="cm"># Full URL with params</span>
+    posts = response.json()
+    <span class="kw">for</span> post <span class="kw">in</span> posts:
+        print(f<span class="str">"  [{post['id']}] {post['title'][:60]}..."</span>)
+
+<span class="cm"># ── POST: Create a post ───────────────────────</span>
+<span class="kw">def</span> <span class="fn">demo_post</span>():
+    payload = {<span class="str">"title"</span>: <span class="str">"Understanding HTTP Methods"</span>,
+               <span class="str">"body"</span>: <span class="str">"GET retrieves, POST creates..."</span>, <span class="str">"userId"</span>: <span class="num">1</span>}
+    response = requests.post(f<span class="str">"{BASE_URL}/posts"</span>, json=payload)
+    print(f<span class="str">"Status: {response.status_code}"</span>)      <span class="cm"># → 201</span>
+    created = response.json()
+    print(f<span class="str">"Created ID: {created.get('id')}"</span>)
+
+<span class="cm"># ── PUT: Full update ──────────────────────────</span>
+<span class="kw">def</span> <span class="fn">demo_put</span>():
+    updated = {<span class="str">"id"</span>: <span class="num">1</span>, <span class="str">"title"</span>: <span class="str">"Updated Title via PUT"</span>,
+               <span class="str">"body"</span>: <span class="str">"Replaces the entire resource."</span>, <span class="str">"userId"</span>: <span class="num">1</span>}
+    response = requests.put(f<span class="str">"{BASE_URL}/posts/1"</span>, json=updated)
+    print(f<span class="str">"Status: {response.status_code}"</span>)      <span class="cm"># → 200</span>
+
+<span class="cm"># ── DELETE: Remove resource ───────────────────</span>
+<span class="kw">def</span> <span class="fn">demo_delete</span>():
+    response = requests.delete(f<span class="str">"{BASE_URL}/posts/1"</span>)
+    print(f<span class="str">"Status: {response.status_code}"</span>)      <span class="cm"># → 200</span></code></pre>
+    </div>
+
+    <!-- Status Codes Reference -->
+    <div class="status-codes-box">
+      <h3>📊 HTTP Status Code Reference</h3>
+      <div class="status-grid">
+        <div class="status-group">
+          <h4 class="status-group-title success">2xx — Success</h4>
+          <div class="status-item"><span class="code-inline">200</span> OK — Successful GET/PUT</div>
+          <div class="status-item"><span class="code-inline">201</span> Created — POST successful</div>
+          <div class="status-item"><span class="code-inline">204</span> No Content — DELETE (no body)</div>
+        </div>
+        <div class="status-group">
+          <h4 class="status-group-title redirect">3xx — Redirect</h4>
+          <div class="status-item"><span class="code-inline">301</span> Moved Permanently</div>
+          <div class="status-item"><span class="code-inline">304</span> Not Modified (cached)</div>
+        </div>
+        <div class="status-group">
+          <h4 class="status-group-title client-err">4xx — Client Errors</h4>
+          <div class="status-item"><span class="code-inline">400</span> Bad Request</div>
+          <div class="status-item"><span class="code-inline">401</span> Unauthorized</div>
+          <div class="status-item"><span class="code-inline">403</span> Forbidden</div>
+          <div class="status-item"><span class="code-inline">404</span> Not Found</div>
+          <div class="status-item"><span class="code-inline">429</span> Too Many Requests</div>
+        </div>
+        <div class="status-group">
+          <h4 class="status-group-title server-err">5xx — Server Errors</h4>
+          <div class="status-item"><span class="code-inline">500</span> Internal Server Error</div>
+          <div class="status-item"><span class="code-inline">502</span> Bad Gateway</div>
+          <div class="status-item"><span class="code-inline">503</span> Service Unavailable</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ AUTHENTICATION ════ -->
+<section class="section detail-section alt-bg" id="auth">
+  <div class="container">
+    <div class="detail-header">
+      <span class="topic-badge badge-2">Topic 02 · Security</span>
+      <h2 class="detail-title">🔐 Authentication</h2>
+      <p class="detail-desc">Most production APIs require authentication. You need to prove who you are before accessing data. There are four major auth patterns you'll encounter.</p>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="showAuth('apikey')" id="tab-apikey">API Key</button>
+      <button class="auth-tab" onclick="showAuth('bearer')" id="tab-bearer">Bearer Token</button>
+      <button class="auth-tab" onclick="showAuth('basic')" id="tab-basic">Basic Auth</button>
+      <button class="auth-tab" onclick="showAuth('oauth2')" id="tab-oauth2">OAuth 2.0</button>
+    </div>
+
+    <div class="auth-panel active" id="auth-apikey">
+      <div class="auth-info">
+        <h3>API Key Authentication</h3>
+        <p>The simplest form. A unique key issued by the API provider. Can be passed via query parameter (less secure) or request header (recommended).</p>
+        <div class="auth-pros-cons">
+          <div class="pros"><h4>✅ Pros</h4><ul><li>Simple to implement</li><li>Stateless</li><li>Easy to rotate</li></ul></div>
+          <div class="cons"><h4>⚠️ Cons</h4><ul><li>Long-lived if not rotated</li><li>No per-user scoping</li><li>Risks if leaked</li></ul></div>
+        </div>
+      </div>
+      <div class="code-block-wrapper">
+        <div class="code-block-header"><span class="code-lang">Python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+        <pre class="code-block"><code><span class="cm"># ✅ Method 1: API Key in Header (recommended)</span>
+headers = {
+    <span class="str">"X-API-Key"</span>: os.environ.get(<span class="str">"MY_API_KEY"</span>),  <span class="cm"># From env, never hardcoded!</span>
+    <span class="str">"Content-Type"</span>: <span class="str">"application/json"</span>,
+}
+response = requests.get(<span class="str">"https://api.example.com/data"</span>, headers=headers)
+
+<span class="cm"># ⚠️ Method 2: API Key in Query Param (less secure)</span>
+params = {<span class="str">"api_key"</span>: os.environ.get(<span class="str">"MY_API_KEY"</span>)}
+response = requests.get(<span class="str">"https://api.example.com/data"</span>, params=params)
+<span class="cm"># Key appears in URL — visible in logs, browser history!</span></code></pre>
+      </div>
+    </div>
+
+    <div class="auth-panel" id="auth-bearer">
+      <div class="auth-info">
+        <h3>Bearer Token (JWT / OAuth2 Access Token)</h3>
+        <p>The most common modern auth. A signed token (usually JWT) is sent in the <code>Authorization</code> header. The server validates the token without a database lookup.</p>
+        <div class="auth-pros-cons">
+          <div class="pros"><h4>✅ Pros</h4><ul><li>Stateless, scalable</li><li>Contains user claims</li><li>Short-lived (expires)</li></ul></div>
+          <div class="cons"><h4>⚠️ Cons</h4><ul><li>Can't be invalidated before expiry</li><li>Larger payload than session ID</li></ul></div>
+        </div>
+      </div>
+      <div class="code-block-wrapper">
+        <div class="code-block-header"><span class="code-lang">Python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+        <pre class="code-block"><code>TOKEN = os.environ.get(<span class="str">"ACCESS_TOKEN"</span>)  <span class="cm"># JWT or opaque token</span>
+
+headers = {
+    <span class="str">"Authorization"</span>: f<span class="str">"Bearer {TOKEN}"</span>,   <span class="cm"># Always "Bearer " prefix</span>
+    <span class="str">"Content-Type"</span>: <span class="str">"application/json"</span>,
+}
+response = requests.get(<span class="str">"https://api.github.com/user/repos"</span>, headers=headers)
+response.raise_for_status()          <span class="cm"># Raises on 401 Unauthorized</span>
+repos = response.json()
+
+<span class="cm"># Using a persistent Session (efficient for multiple calls)</span>
+session = requests.Session()
+session.headers.update({<span class="str">"Authorization"</span>: f<span class="str">"Bearer {TOKEN}"</span>})
+repos = session.get(<span class="str">"https://api.github.com/user/repos"</span>).json()</code></pre>
+      </div>
+    </div>
+
+    <div class="auth-panel" id="auth-basic">
+      <div class="auth-info">
+        <h3>Basic Authentication</h3>
+        <p>Username + password encoded in Base64 and sent in the <code>Authorization</code> header. Legacy pattern — only use over HTTPS, and prefer API keys where possible.</p>
+        <div class="auth-pros-cons">
+          <div class="pros"><h4>✅ Pros</h4><ul><li>Universally supported</li><li>Simple implementation</li></ul></div>
+          <div class="cons"><h4>⚠️ Cons</h4><ul><li>Credentials on every request</li><li>Base64 is NOT encryption</li><li>Requires HTTPS</li></ul></div>
+        </div>
+      </div>
+      <div class="code-block-wrapper">
+        <div class="code-block-header"><span class="code-lang">Python</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+        <pre class="code-block"><code><span class="kw">from</span> requests.auth <span class="kw">import</span> HTTPBasicAuth
+<span class="kw">import</span> base64
+
+<span class="cm"># Method 1: requests handles encoding automatically ✅</span>
+response = requests.get(
+    <span class="str">"https://api.example.com/data"</span>,
+    auth=HTTPBasicAuth(<span class="str">"username"</span>, <span class="str">"password"</span>)
+)
+
+<span class="cm"># Method 2: Shorthand tuple syntax</span>
+response = requests.get(url, auth=(<span class="str">"username"</span>, <span class="str">"password"</span>))
+
+<span class="cm"># What actually goes in the header (for reference):</span>
+credentials = base64.b64encode(<span class="str">"user:pass"</span>.encode()).decode()
+<span class="cm"># → Authorization: Basic dXNlcjpwYXNz</span></code></pre>
+      </div>
+    </div>
+
+    <div class="auth-panel" id="auth-oauth2">
+      <div class="auth-info">
+        <h3>OAuth 2.0 — The Full Flow</h3>
+        <p>The standard for delegated authorization. Instead of sharing credentials, users grant permission to your app. Used by Google, GitHub, Twitter, etc.</p>
+        <div class="oauth-flow">
+          <div class="oauth-step">1️⃣ User visits your app</div>
+          <div class="oauth-arrow">→</div>
+          <div class="oauth-step">2️⃣ Redirect to provider's login</div>
+          <div class="oauth-arrow">→</div>
+          <div class="oauth-step">3️⃣ User grants permission</div>
+          <div class="oauth-arrow">→</div>
+          <div class="oauth-step">4️⃣ Provider sends auth code</div>
+          <div class="oauth-arrow">→</div>
+          <div class="oauth-step">5️⃣ Exchange code for token</div>
+          <div class="oauth-arrow">→</div>
+          <div class="oauth-step">6️⃣ Use token for API calls</div>
+        </div>
+      </div>
+      <div class="code-block-wrapper">
+        <div class="code-block-header"><span class="code-lang">Python · OAuth2 Token Exchange</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+        <pre class="code-block"><code><span class="cm"># Step 5: Exchange auth code for access token</span>
+token_response = requests.post(<span class="str">"https://provider.com/oauth/token"</span>, data={
+    <span class="str">"grant_type"</span>: <span class="str">"authorization_code"</span>,
+    <span class="str">"code"</span>: auth_code,                         <span class="cm"># From redirect URL</span>
+    <span class="str">"client_id"</span>: os.environ.get(<span class="str">"CLIENT_ID"</span>),
+    <span class="str">"client_secret"</span>: os.environ.get(<span class="str">"CLIENT_SECRET"</span>),
+    <span class="str">"redirect_uri"</span>: <span class="str">"https://yourapp.com/callback"</span>,
+})
+tokens = token_response.json()
+access_token = tokens[<span class="str">"access_token"</span>]
+refresh_token = tokens[<span class="str">"refresh_token"</span>]   <span class="cm"># Save for renewal</span>
+
+<span class="cm"># Step 6: Use the access token</span>
+headers = {<span class="str">"Authorization"</span>: f<span class="str">"Bearer {access_token}"</span>}
+data = requests.get(<span class="str">"https://api.provider.com/me"</span>, headers=headers).json()</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ENDPOINTS ════ -->
+<section class="section detail-section" id="endpoints">
+  <div class="container">
+    <div class="detail-header">
+      <span class="topic-badge badge-3">Topic 03 · Structure</span>
+      <h2 class="detail-title">🎯 API Endpoints</h2>
+      <p class="detail-desc">An endpoint is a specific URL where a resource lives. Understanding how URLs are structured lets you navigate any API confidently.</p>
+    </div>
+
+    <div class="url-anatomy">
+      <h3>URL Anatomy</h3>
+      <div class="url-diagram">
+        <div class="url-display">
+          <span class="url-part url-protocol" data-label="Protocol">https://</span><span class="url-part url-host" data-label="Base URL">api.example.com</span><span class="url-part url-path" data-label="Resource Path">/users</span><span class="url-part url-id" data-label="Path Variable">/42</span><span class="url-part url-query" data-label="Query Params">?include=profile&amp;limit=10</span>
+        </div>
+        <div class="url-labels">
+          <span class="url-label-item label-protocol">Protocol</span>
+          <span class="url-label-item label-host">Base URL</span>
+          <span class="url-label-item label-path">Resource</span>
+          <span class="url-label-item label-id">Path Var</span>
+          <span class="url-label-item label-query">Query Params</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="endpoints-examples">
+      <div class="endpoint-row">
+        <div class="endpoint-method get">GET</div>
+        <div class="endpoint-url"><code>/posts</code></div>
+        <div class="endpoint-desc">Retrieve all posts</div>
+        <div class="endpoint-status">200</div>
+      </div>
+      <div class="endpoint-row">
+        <div class="endpoint-method get">GET</div>
+        <div class="endpoint-url"><code>/posts/1</code></div>
+        <div class="endpoint-desc">Retrieve single post by ID</div>
+        <div class="endpoint-status">200</div>
+      </div>
+      <div class="endpoint-row">
+        <div class="endpoint-method get">GET</div>
+        <div class="endpoint-url"><code>/posts/1/comments</code></div>
+        <div class="endpoint-desc">Nested — comments for post 1</div>
+        <div class="endpoint-status">200</div>
+      </div>
+      <div class="endpoint-row">
+        <div class="endpoint-method get">GET</div>
+        <div class="endpoint-url"><code>/posts?userId=1&amp;_limit=3</code></div>
+        <div class="endpoint-desc">Filter posts by query params</div>
+        <div class="endpoint-status">200</div>
+      </div>
+      <div class="endpoint-row">
+        <div class="endpoint-method post">POST</div>
+        <div class="endpoint-url"><code>/posts</code></div>
+        <div class="endpoint-desc">Create a new post</div>
+        <div class="endpoint-status created">201</div>
+      </div>
+      <div class="endpoint-row">
+        <div class="endpoint-method delete">DELETE</div>
+        <div class="endpoint-url"><code>/posts/1</code></div>
+        <div class="endpoint-desc">Remove post with ID 1</div>
+        <div class="endpoint-status">200</div>
+      </div>
+    </div>
+
+    <div class="code-block-wrapper">
+      <div class="code-block-header"><span class="code-lang">Python · 03_endpoints.py</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="code-block"><code>BASE_URL = <span class="str">"https://jsonplaceholder.typicode.com"</span>
+
+<span class="cm"># ── Path Variables ────────────────────────────</span>
+<span class="kw">for</span> post_id <span class="kw">in</span> [<span class="num">1</span>, <span class="num">5</span>, <span class="num">10</span>]:
+    r = requests.get(f<span class="str">"{BASE_URL}/posts/{post_id}"</span>)
+    print(f<span class="str">"  Post {post_id}: {r.json()['title'][:40]}..."</span>)
+
+<span class="cm"># ── Nested Resources ──────────────────────────</span>
+r = requests.get(f<span class="str">"{BASE_URL}/posts/1/comments"</span>)
+print(f<span class="str">"Comments on post 1: {len(r.json())}"</span>)    <span class="cm"># → 5</span>
+
+<span class="cm"># ── Query Parameters (always use dict, not string!) ──</span>
+params = {<span class="str">"userId"</span>: <span class="num">1</span>, <span class="str">"_limit"</span>: <span class="num">3</span>}
+r = requests.get(f<span class="str">"{BASE_URL}/posts"</span>, params=params)
+print(f<span class="str">"URL built: {r.url}"</span>)
+<span class="cm"># → https://jsonplaceholder.typicode.com/posts?userId=1&_limit=3</span></code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ════ REQUEST HEADERS ════ -->
+<section class="section detail-section alt-bg" id="headers">
+  <div class="container">
+    <div class="detail-header">
+      <span class="topic-badge badge-4">Topic 04 · Protocol</span>
+      <h2 class="detail-title">📋 Request Headers</h2>
+      <p class="detail-desc">Headers are key-value metadata sent with every HTTP request and response. They tell the server what format you're sending, what you want back, and who you are.</p>
+    </div>
+
+    <div class="headers-table-wrapper">
+      <table class="headers-table">
+        <thead>
+          <tr><th>Header</th><th>Example Value</th><th>Purpose</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>Content-Type</code></td><td><code>application/json</code></td><td>Format of data you're <strong>sending</strong></td></tr>
+          <tr><td><code>Accept</code></td><td><code>application/json</code></td><td>Format you want to <strong>receive</strong></td></tr>
+          <tr><td><code>Authorization</code></td><td><code>Bearer &lt;token&gt;</code></td><td>Authentication credentials</td></tr>
+          <tr><td><code>User-Agent</code></td><td><code>MyApp/1.0 (Python requests)</code></td><td>Identifies your client to the server</td></tr>
+          <tr><td><code>X-API-Key</code></td><td><code>sk-prod-xxx</code></td><td>API key in custom header</td></tr>
+          <tr><td><code>X-Request-ID</code></td><td><code>req-20240801-001</code></td><td>Unique ID for request tracing / logging</td></tr>
+          <tr><td><code>Cache-Control</code></td><td><code>no-cache</code></td><td>Bypass cached responses</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="code-block-wrapper">
+      <div class="code-block-header"><span class="code-lang">Python · 04_request_headers.py</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="code-block"><code><span class="cm"># ── Build a well-formed request ───────────────</span>
+headers = {
+    <span class="str">"Content-Type"</span>: <span class="str">"application/json"</span>,
+    <span class="str">"Accept"</span>: <span class="str">"application/json"</span>,
+    <span class="str">"User-Agent"</span>: <span class="str">"MyAPIClient/1.0 (Python requests)"</span>,
+    <span class="str">"Authorization"</span>: f<span class="str">"Bearer {TOKEN}"</span>,
+    <span class="str">"X-Request-ID"</span>: <span class="str">"req-20240801-001"</span>,
+}
+response = requests.get(url, headers=headers)
+
+<span class="cm"># ── Inspect response headers from server ──────</span>
+<span class="kw">for</span> key, value <span class="kw">in</span> response.headers.items():
+    print(f<span class="str">"  {key}: {value}"</span>)
+<span class="cm"># → Content-Type: application/json; charset=utf-8</span>
+<span class="cm"># → X-RateLimit-Limit: 1000</span>
+<span class="cm"># → ETag: W/"1234abc"</span></code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ERROR HANDLING ════ -->
+<section class="section detail-section" id="error-handling">
+  <div class="container">
+    <div class="detail-header">
+      <span class="topic-badge badge-5">Topic 05 · Resilience</span>
+      <h2 class="detail-title">🛡️ Error Handling</h2>
+      <p class="detail-desc">Production API clients must handle failures gracefully. Network errors, timeouts, 4xx client errors, and 5xx server errors all need different handling strategies.</p>
+    </div>
+
+    <div class="error-flow">
+      <div class="error-flow-title">The Safe API Call Pattern</div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-icon">📤</div>
+          <div class="flow-label">Send Request</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-icon">📥</div>
+          <div class="flow-label">Get Response</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-icon">🔍</div>
+          <div class="flow-label">Check Status</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-icon">📦</div>
+          <div class="flow-label">Parse JSON</div>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">
+          <div class="flow-icon">✅</div>
+          <div class="flow-label">Use Data</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block-wrapper">
+      <div class="code-block-header"><span class="code-lang">Python · 05_error_handling.py — Production Pattern</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="code-block"><code><span class="kw">def</span> <span class="fn">safe_api_call</span>(url: str, **kwargs) -> dict:
+    <span class="str">"""Wrapper with complete error handling."""</span>
+    <span class="kw">try</span>:
+        response = requests.get(url, timeout=<span class="num">10</span>, **kwargs)
+        response.raise_for_status()         <span class="cm"># Raises on 4xx / 5xx</span>
+        <span class="kw">return</span> {<span class="str">"success"</span>: <span class="kw">True</span>, <span class="str">"data"</span>: response.json(),
+                <span class="str">"status"</span>: response.status_code}
+
+    <span class="kw">except</span> requests.exceptions.Timeout:
+        <span class="kw">return</span> {<span class="str">"success"</span>: <span class="kw">False</span>, <span class="str">"error"</span>: <span class="str">"Request timed out after 10s"</span>}
+
+    <span class="kw">except</span> requests.exceptions.ConnectionError:
+        <span class="kw">return</span> {<span class="str">"success"</span>: <span class="kw">False</span>, <span class="str">"error"</span>: <span class="str">"Network connection failed"</span>}
+
+    <span class="kw">except</span> requests.exceptions.HTTPError <span class="kw">as</span> e:
+        <span class="kw">return</span> {<span class="str">"success"</span>: <span class="kw">False</span>, <span class="str">"error"</span>: str(e),
+                <span class="str">"status"</span>: e.response.status_code}
+
+    <span class="kw">except</span> requests.exceptions.JSONDecodeError:
+        <span class="kw">return</span> {<span class="str">"success"</span>: <span class="kw">False</span>, <span class="str">"error"</span>: <span class="str">"Response was not valid JSON"</span>}
+
+
+<span class="cm"># Using the safe wrapper:</span>
+result = safe_api_call(<span class="str">"https://jsonplaceholder.typicode.com/posts/1"</span>)
+<span class="kw">if</span> result[<span class="str">"success"</span>]:
+    print(result[<span class="str">"data"</span>][<span class="str">"title"</span>])
+<span class="kw">else</span>:
+    print(f<span class="str">"Error: {result['error']}"</span>)</code></pre>
+    </div>
+
+    <div class="exception-hierarchy">
+      <h3>Exception Hierarchy — requests library</h3>
+      <div class="hierarchy-tree">
+        <div class="h-root">IOError</div>
+        <div class="h-child">
+          <div class="h-node">requests.exceptions.<strong>RequestException</strong></div>
+          <div class="h-grandchild">
+            <div class="h-leaf">ConnectionError</div>
+            <div class="h-leaf">HTTPError <span class="h-note">(from raise_for_status)</span></div>
+            <div class="h-leaf">URLRequired</div>
+            <div class="h-leaf">TooManyRedirects</div>
+            <div class="h-leaf">Timeout
+              <div class="h-subchild">
+                <div class="h-leaf">ConnectTimeout</div>
+                <div class="h-leaf">ReadTimeout</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ RATE LIMITS ════ -->
+<section class="section detail-section alt-bg" id="rate-limits">
+  <div class="container">
+    <div class="detail-header">
+      <span class="topic-badge badge-6">Topic 06 · Politeness</span>
+      <h2 class="detail-title">⏱️ Rate Limits &amp; Backoff</h2>
+      <p class="detail-desc">Rate limits protect API servers. Exceed them and you get <code>429 Too Many Requests</code>. Every production client must implement exponential backoff and throttling.</p>
+    </div>
+
+    <div class="rate-limit-visual">
+      <div class="rl-header">Exponential Backoff — Wait times on consecutive failures</div>
+      <div class="rl-bars">
+        <div class="rl-bar-wrap"><div class="rl-bar" style="height:20%"><span>1s</span></div><div class="rl-label">Attempt 1</div></div>
+        <div class="rl-bar-wrap"><div class="rl-bar" style="height:35%"><span>2s</span></div><div class="rl-label">Attempt 2</div></div>
+        <div class="rl-bar-wrap"><div class="rl-bar" style="height:55%"><span>4s</span></div><div class="rl-label">Attempt 3</div></div>
+        <div class="rl-bar-wrap"><div class="rl-bar" style="height:80%"><span>8s</span></div><div class="rl-label">Attempt 4</div></div>
+        <div class="rl-bar-wrap"><div class="rl-bar" style="height:100%"><span>16s</span></div><div class="rl-label">Attempt 5</div></div>
+      </div>
+      <div class="rl-formula">Wait = 2<sup>attempt</sup> + random(0, 1) seconds <em>(jitter prevents thundering herd)</em></div>
+    </div>
+
+    <div class="code-block-wrapper">
+      <div class="code-block-header"><span class="code-lang">Python · 06_rate_limits.py — Exponential Backoff</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="code-block"><code><span class="kw">import</span> time, random
+
+<span class="kw">def</span> <span class="fn">exponential_backoff_request</span>(url: str, max_retries: int = <span class="num">5</span>):
+    <span class="str">"""Retry with exponential backoff on 429 or 5xx errors."""</span>
+    <span class="kw">for</span> attempt <span class="kw">in</span> range(max_retries):
+        <span class="kw">try</span>:
+            response = requests.get(url, timeout=<span class="num">10</span>)
+
+            <span class="kw">if</span> response.status_code == <span class="num">429</span>:
+                wait = response.headers.get(<span class="str">"Retry-After"</span>, <span class="num">2</span> ** attempt)
+                print(f<span class="str">"  [429] Rate limited. Waiting {wait}s..."</span>)
+                time.sleep(float(wait))
+                <span class="kw">continue</span>
+
+            <span class="kw">if</span> response.status_code >= <span class="num">500</span>:
+                wait = (<span class="num">2</span> ** attempt) + random.uniform(<span class="num">0</span>, <span class="num">1</span>)  <span class="cm"># jitter</span>
+                time.sleep(wait)
+                <span class="kw">continue</span>
+
+            <span class="kw">return</span> response   <span class="cm"># ✅ Success</span>
+
+        <span class="kw">except</span> requests.exceptions.ConnectionError:
+            time.sleep(<span class="num">2</span> ** attempt)
+
+    <span class="kw">return</span> <span class="kw">None</span>  <span class="cm"># All retries exhausted</span>
+
+
+<span class="cm"># Polite batch requests with delay between calls</span>
+<span class="kw">def</span> <span class="fn">throttled_batch</span>(post_ids, delay=<span class="num">0.3</span>):
+    results = []
+    <span class="kw">for</span> pid <span class="kw">in</span> post_ids:
+        r = requests.get(f<span class="str">"https://api.example.com/posts/{pid}"</span>)
+        results.append(r.json())
+        time.sleep(delay)   <span class="cm"># ← polite delay between requests</span>
+    <span class="kw">return</span> results</code></pre>
+    </div>
+
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">📊</div>
+        <h4>Check Rate Limit Headers</h4>
+        <p><code>X-RateLimit-Remaining</code> before batch jobs. Stop early if near zero.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">💾</div>
+        <h4>Cache Responses</h4>
+        <p>Store API responses to avoid redundant calls. Use <code>requests-cache</code> or Redis.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📦</div>
+        <h4>Use Bulk Endpoints</h4>
+        <p>Prefer <code>/posts?ids=1,2,3</code> over three separate calls where available.</p>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">⏰</div>
+        <h4>Respect Retry-After</h4>
+        <p>On 429, read the <code>Retry-After</code> header and wait exactly that long.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ JSON & DATA ════ -->
+<section class="section detail-section" id="json">
+  <div class="container">
+    <div class="detail-header">
+      <span class="topic-badge badge-7">Topic 07 · Data</span>
+      <h2 class="detail-title">📦 JSON &amp; Data Formats</h2>
+      <p class="detail-desc">JSON (JavaScript Object Notation) is the universal language of REST APIs. Mastering serialization, deserialization, nested access, and validation is essential.</p>
+    </div>
+
+    <div class="json-demo">
+      <div class="json-demo-col">
+        <h4>Python Dict</h4>
+        <pre class="mini-code"><code>data = {
+  <span class="str">"name"</span>: <span class="str">"Alice"</span>,
+  <span class="str">"age"</span>: <span class="num">30</span>,
+  <span class="str">"active"</span>: <span class="kw">True</span>,
+  <span class="str">"scores"</span>: [<span class="num">95</span>, <span class="num">87</span>, <span class="num">92</span>],
+  <span class="str">"address"</span>: {
+    <span class="str">"city"</span>: <span class="str">"Kathmandu"</span>
+  }
+}</code></pre>
+      </div>
+      <div class="json-demo-arrow">⇄</div>
+      <div class="json-demo-col">
+        <h4>JSON String</h4>
+        <pre class="mini-code"><code>{
+  <span class="str">"name"</span>: <span class="str">"Alice"</span>,
+  <span class="str">"age"</span>: <span class="num">30</span>,
+  <span class="str">"active"</span>: <span class="kw">true</span>,
+  <span class="str">"scores"</span>: [<span class="num">95</span>, <span class="num">87</span>, <span class="num">92</span>],
+  <span class="str">"address"</span>: {
+    <span class="str">"city"</span>: <span class="str">"Kathmandu"</span>
+  }
+}</code></pre>
+      </div>
+    </div>
+
+    <div class="code-block-wrapper">
+      <div class="code-block-header"><span class="code-lang">Python · JSON Patterns</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="code-block"><code><span class="kw">import</span> json, requests
+
+<span class="cm"># ── Encode / Decode ───────────────────────────</span>
+json_str = json.dumps(data, indent=<span class="num">2</span>)   <span class="cm"># Python → JSON string</span>
+parsed  = json.loads(json_str)            <span class="cm"># JSON string → Python</span>
+
+<span class="cm"># ── From API response ─────────────────────────</span>
+r = requests.get(<span class="str">"https://jsonplaceholder.typicode.com/users/1"</span>)
+user = r.json()                           <span class="cm"># Always returns Python dict/list</span>
+
+<span class="cm"># ── Safe nested access with .get() ───────────</span>
+name    = user.get(<span class="str">"name"</span>, <span class="str">"Unknown"</span>)
+city    = user.get(<span class="str">"address"</span>, {}).get(<span class="str">"city"</span>, <span class="str">"No city"</span>)
+lat     = user.get(<span class="str">"address"</span>, {}).get(<span class="str">"geo"</span>, {}).get(<span class="str">"lat"</span>)
+
+<span class="cm"># ── Type validation ───────────────────────────</span>
+<span class="kw">assert</span> isinstance(user.get(<span class="str">"id"</span>), int), <span class="str">"id must be int"</span>
+<span class="kw">assert</span> isinstance(user.get(<span class="str">"name"</span>), str), <span class="str">"name must be str"</span>
+
+<span class="cm"># ── Save to file ──────────────────────────────</span>
+<span class="kw">with</span> open(<span class="str">"output.json"</span>, <span class="str">"w"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+    json.dump(user, f, indent=<span class="num">2</span>, ensure_ascii=<span class="kw">False</span>)
+
+<span class="cm"># ── Send JSON in POST body ────────────────────</span>
+r = requests.post(url, json=payload)      <span class="cm"># Automatically sets Content-Type</span></code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SECURITY ════ -->
+<section class="section detail-section alt-bg" id="security">
+  <div class="container">
+    <div class="detail-header">
+      <span class="topic-badge badge-8">Topic 08 · Best Practice</span>
+      <h2 class="detail-title">🔒 API Security</h2>
+      <p class="detail-desc">API key leaks can cause unauthorized charges, data breaches, and account suspension. These patterns are non-negotiable in production code.</p>
+    </div>
+
+    <div class="security-checklist">
+      <h3>🛡️ Security Checklist</h3>
+      <div class="checklist-grid">
+        <div class="check-item pass">
+          <span class="check-icon">✅</span>
+          <div class="check-content">
+            <strong>Use Environment Variables</strong>
+            <p>Load keys from <code>os.environ.get("MY_API_KEY")</code>, never from source code.</p>
+          </div>
+        </div>
+        <div class="check-item pass">
+          <span class="check-icon">✅</span>
+          <div class="check-content">
+            <strong>Use .env + python-dotenv</strong>
+            <p>Store secrets in <code>.env</code> file, load with <code>load_dotenv()</code>.</p>
+          </div>
+        </div>
+        <div class="check-item pass">
+          <span class="check-icon">✅</span>
+          <div class="check-content">
+            <strong>Always Use HTTPS</strong>
+            <p>Never set <code>verify=False</code> in production. TLS is not optional.</p>
+          </div>
+        </div>
+        <div class="check-item pass">
+          <span class="check-icon">✅</span>
+          <div class="check-content">
+            <strong>Mask Sensitive Logs</strong>
+            <p>Truncate/redact Authorization headers and API keys before logging.</p>
+          </div>
+        </div>
+        <div class="check-item fail">
+          <span class="check-icon">❌</span>
+          <div class="check-content">
+            <strong>Never Hardcode Keys</strong>
+            <p>Keys in source code = keys in git history = permanent security risk.</p>
+          </div>
+        </div>
+        <div class="check-item fail">
+          <span class="check-icon">❌</span>
+          <div class="check-content">
+            <strong>Never Commit .env to Git</strong>
+            <p>Add <code>.env</code> to <code>.gitignore</code> immediately. Use <code>.env.example</code> for templates.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block-wrapper">
+      <div class="code-block-header"><span class="code-lang">Python · 08_security.py — The .env Pattern</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre class="code-block"><code><span class="cm"># .env file (NEVER commit this to git!)</span>
+<span class="cm"># MY_API_KEY=your_actual_key_here</span>
+<span class="cm"># DATABASE_URL=postgresql://user:pass@localhost/db</span>
+
+<span class="kw">from</span> dotenv <span class="kw">import</span> load_dotenv
+<span class="kw">import</span> os
+
+load_dotenv()                              <span class="cm"># Reads .env into os.environ</span>
+api_key = os.environ.get(<span class="str">"MY_API_KEY"</span>)   <span class="cm"># None if not set</span>
+
+<span class="kw">if not</span> api_key:
+    <span class="kw">raise</span> EnvironmentError(<span class="str">"MY_API_KEY is not set. Check your .env file."</span>)
+
+<span class="cm"># Safe logging — mask sensitive values</span>
+<span class="kw">def</span> <span class="fn">mask_key</span>(key: str) -> str:
+    <span class="kw">return</span> key[:<span class="num">4</span>] + <span class="str">"*"</span> * (len(key) - <span class="num">4</span>) <span class="kw">if</span> key <span class="kw">else</span> <span class="str">"NOT SET"</span>
+
+print(f<span class="str">"API Key: {mask_key(api_key)}"</span>)     <span class="cm"># → API Key: sk-p****** (safe to log)</span>
+
+<span class="cm"># Always validate HTTPS</span>
+response = requests.get(url, verify=<span class="kw">True</span>)  <span class="cm"># Default — never set to False!</span></code></pre>
+    </div>
+
+    <div class="gitignore-box">
+      <div class="gitignore-title">.gitignore — Minimum required entries</div>
+      <pre class="mini-code"><code>.env
+.env.local
+.env.*.local
+*.key
+secrets/
+__pycache__/
+.venv/</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ════ API DOCS ════ -->
+<section class="section detail-section" id="docs-reading">
+  <div class="container">
+    <div class="detail-header">
+      <span class="topic-badge badge-9">Topic 09 · Workflow</span>
+      <h2 class="detail-title">📖 Reading API Documentation</h2>
+      <p class="detail-desc">Every professional API exposes its schema through OpenAPI (Swagger) specs. Learning to read these docs is as important as writing code.</p>
+    </div>
+
+    <div class="docs-types-grid">
+      <div class="docs-type-card">
+        <div class="docs-type-icon">🔵</div>
+        <h4>Swagger UI</h4>
+        <p>Interactive browser UI. Test endpoints live without writing code. Available at <code>/docs</code> in FastAPI apps.</p>
+        <code class="docs-url">http://localhost:8000/docs</code>
+      </div>
+      <div class="docs-type-card">
+        <div class="docs-type-icon">🟢</div>
+        <h4>ReDoc</h4>
+        <p>Clean, three-panel reference documentation. Best for reading and understanding schema structure.</p>
+        <code class="docs-url">http://localhost:8000/redoc</code>
+      </div>
+      <div class="docs-type-card">
+        <div class="docs-type-icon">🟡</div>
+        <h4>OpenAPI JSON/YAML</h4>
+        <p>The raw spec file. Use to auto-generate client SDKs, validate requests, or import into Postman.</p>
+        <code class="docs-url">http://localhost:8000/openapi.json</code>
+      </div>
+    </div>
+
+    <div class="docs-checklist">
+      <h3>🔍 When Reading API Docs — Check These First</h3>
+      <div class="checklist-linear">
+        <div class="cl-item"><span>1</span><p>Base URL and versioning (<code>/v1/</code>, <code>/v2/</code>)</p></div>
+        <div class="cl-item"><span>2</span><p>Authentication method (API key location, OAuth scopes)</p></div>
+        <div class="cl-item"><span>3</span><p>Rate limit policy (requests/minute, daily quotas)</p></div>
+        <div class="cl-item"><span>4</span><p>Available endpoints, their methods, required params</p></div>
+        <div class="cl-item"><span>5</span><p>Response schema — field names, types, nullable fields</p></div>
+        <div class="cl-item"><span>6</span><p>Error response format (how errors look in JSON)</p></div>
+        <div class="cl-item"><span>7</span><p>Pagination strategy (page, cursor, offset, link headers)</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TESTING ════ -->
+<section class="section detail-section alt-bg" id="testing">
+  <div class="container">
+    <div class="detail-header">
+      <span class="topic-badge badge-10">Topic 10 · Quality</span>
+      <h2 class="detail-title">🧪 Testing Tools</h2>
+      <p class="detail-desc">Before writing a single line of application code, test the API manually. This saves hours of debugging later and confirms your understanding of the API's behavior.</p>
+    </div>
+
+    <div class="tools-comparison">
+      <div class="tool-card">
+        <div class="tool-icon">🖥️</div>
+        <h4>curl</h4>
+        <p>Built into every OS. Perfect for quick one-liners and CI pipeline testing.</p>
+        <pre class="mini-code"><code>curl -X GET \
+  "https://jsonplaceholder.typicode.com/posts/1" \
+  -H "Accept: application/json"</code></pre>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">📬</div>
+        <h4>Postman</h4>
+        <p>GUI tool for building, testing, and sharing API requests. Supports collections, environments, and test scripts.</p>
+        <pre class="mini-code"><code><span class="cm">// Postman Test Script</span>
+pm.test(<span class="str">"Status 200"</span>, () =>
+  pm.response.to.have.status(<span class="num">200</span>));
+pm.test(<span class="str">"Has title"</span>, () => {
+  <span class="kw">const</span> data = pm.response.json();
+  pm.expect(data.title).to.be.a(<span class="str">"string"</span>);
+});</code></pre>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">🐍</div>
+        <h4>Python Test Suite</h4>
+        <p>Automated test runner built into the project. Validates endpoints before writing feature code.</p>
+        <pre class="mini-code"><code>suite = APITestSuite(BASE_URL)
+suite.run_test(
+    <span class="str">"GET /posts/1 returns 200"</span>,
+    <span class="str">"GET"</span>, <span class="str">"/posts/1"</span>, <span class="num">200</span>,
+    expected_keys=[<span class="str">"id"</span>, <span class="str">"title"</span>]
+)
+suite.summary()
+<span class="cm"># → Results: 6/6 tests passed</span></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FASTAPI ════ -->
+<section class="section detail-section" id="fastapi">
+  <div class="container">
+    <div class="detail-header">
+      <span class="topic-badge badge-fastapi">FastAPI · Build Your Own</span>
+      <h2 class="detail-title">⚡ Build APIs with FastAPI</h2>
+      <p class="detail-desc">FastAPI is the fastest Python web framework for building production APIs. It automatically generates OpenAPI docs from your type hints — zero extra work.</p>
+    </div>
+
+    <div class="fastapi-tabs">
+      <button class="fa-tab active" onclick="showFastAPI('basics')" id="fatab-basics">First Steps</button>
+      <button class="fa-tab" onclick="showFastAPI('path')" id="fatab-path">Path Params</button>
+      <button class="fa-tab" onclick="showFastAPI('body')" id="fatab-body">Request Body</button>
+      <button class="fa-tab" onclick="showFastAPI('crud')" id="fatab-crud">Full CRUD</button>
+    </div>
+
+    <div class="fa-panel active" id="fa-basics">
+      <div class="code-block-wrapper">
+        <div class="code-block-header"><span class="code-lang">Python · 01_first_steps.py</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+        <pre class="code-block"><code><span class="kw">from</span> fastapi <span class="kw">import</span> FastAPI
+<span class="kw">import</span> uvicorn
+
+app = FastAPI(
+    title=<span class="str">"My API"</span>,
+    description=<span class="str">"Built with FastAPI — docs auto-generated!"</span>,
+    version=<span class="str">"1.0.0"</span>,
+)
+
+<span class="cm"># GET / → Returns a dict (auto-converted to JSON)</span>
+@app.get(<span class="str">"/"</span>)
+<span class="kw">def</span> <span class="fn">read_root</span>():
+    <span class="str">"""Root endpoint — docstrings appear in /docs automatically!"""</span>
+    <span class="kw">return</span> {<span class="str">"message"</span>: <span class="str">"Welcome to FastAPI!"</span>, <span class="str">"status"</span>: <span class="str">"online"</span>}
+
+@app.get(<span class="str">"/health"</span>)
+<span class="kw">def</span> <span class="fn">health_check</span>():
+    <span class="str">"""Health monitoring endpoint."""</span>
+    <span class="kw">return</span> {<span class="str">"status"</span>: <span class="str">"healthy"</span>}
+
+<span class="kw">if</span> __name__ == <span class="str">"__main__"</span>:
+    uvicorn.run(<span class="str">"app:app"</span>, host=<span class="str">"0.0.0.0"</span>, port=<span class="num">8000</span>, reload=<span class="kw">True</span>)
+
+<span class="cm"># Run: uvicorn 01_first_steps:app --reload</span>
+<span class="cm"># Docs: http://127.0.0.1:8000/docs  ← FREE Swagger UI!</span></code></pre>
+      </div>
+    </div>
+
+    <div class="fa-panel" id="fa-path">
+      <div class="code-block-wrapper">
+        <div class="code-block-header"><span class="code-lang">Python · 02_path_parameters.py</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+        <pre class="code-block"><code><span class="kw">from</span> fastapi <span class="kw">import</span> FastAPI, Path, HTTPException
+<span class="kw">from</span> enum <span class="kw">import</span> Enum
+
+app = FastAPI()
+
+<span class="cm"># Type-safe path parameter — FastAPI validates automatically</span>
+@app.get(<span class="str">"/posts/{post_id}"</span>)
+<span class="kw">def</span> <span class="fn">get_post</span>(post_id: int = Path(gt=<span class="num">0</span>, description=<span class="str">"Post ID, must be > 0"</span>)):
+    <span class="kw">if</span> post_id > <span class="num">100</span>:
+        <span class="kw">raise</span> HTTPException(status_code=<span class="num">404</span>, detail=<span class="str">"Post not found"</span>)
+    <span class="kw">return</span> {<span class="str">"post_id"</span>: post_id, <span class="str">"title"</span>: f<span class="str">"Post #{post_id}"</span>}
+
+<span class="cm"># Enum path parameter — documented as dropdown in Swagger!</span>
+<span class="kw">class</span> <span class="fn">Category</span>(str, Enum):
+    science = <span class="str">"science"</span>
+    tech    = <span class="str">"tech"</span>
+    art     = <span class="str">"art"</span>
+
+@app.get(<span class="str">"/categories/{category}"</span>)
+<span class="kw">def</span> <span class="fn">get_category</span>(category: Category):
+    <span class="kw">return</span> {<span class="str">"category"</span>: category.value, <span class="str">"description"</span>: f<span class="str">"Posts in {category}"</span>}</code></pre>
+      </div>
+    </div>
+
+    <div class="fa-panel" id="fa-body">
+      <div class="code-block-wrapper">
+        <div class="code-block-header"><span class="code-lang">Python · 04_request_body_pydantic.py</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+        <pre class="code-block"><code><span class="kw">from</span> fastapi <span class="kw">import</span> FastAPI
+<span class="kw">from</span> pydantic <span class="kw">import</span> BaseModel, Field, EmailStr
+<span class="kw">from</span> typing <span class="kw">import</span> Optional
+
+app = FastAPI()
+
+<span class="cm"># Pydantic model = automatic JSON schema + validation</span>
+<span class="kw">class</span> <span class="fn">CreatePost</span>(BaseModel):
+    title:   str   = Field(min_length=<span class="num">3</span>, max_length=<span class="num">100</span>)
+    body:    str   = Field(min_length=<span class="num">10</span>)
+    user_id: int   = Field(gt=<span class="num">0</span>)
+    tags:    list[str] = []
+    draft:   Optional[bool] = <span class="kw">False</span>
+
+@app.post(<span class="str">"/posts"</span>, status_code=<span class="num">201</span>)
+<span class="kw">def</span> <span class="fn">create_post</span>(post: CreatePost):
+    <span class="cm"># FastAPI validates automatically — 422 if invalid!</span>
+    <span class="kw">return</span> {<span class="str">"id"</span>: <span class="num">42</span>, **post.model_dump()}
+
+<span class="cm"># If payload is invalid, FastAPI returns 422 Unprocessable Entity:</span>
+<span class="cm"># { "detail": [{"loc": ["body","title"], "msg": "too short", "type": "..."}] }</span></code></pre>
+      </div>
+    </div>
+
+    <div class="fa-panel" id="fa-crud">
+      <div class="code-block-wrapper">
+        <div class="code-block-header"><span class="code-lang">Python · 08_crud_application.py — Full CRUD</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+        <pre class="code-block"><code><span class="kw">from</span> fastapi <span class="kw">import</span> FastAPI, HTTPException
+<span class="kw">from</span> pydantic <span class="kw">import</span> BaseModel
+
+app = FastAPI(title=<span class="str">"Books CRUD API"</span>)
+db: dict[int, dict] = {}  <span class="cm"># In-memory store</span>
+next_id = <span class="num">1</span>
+
+<span class="kw">class</span> <span class="fn">Book</span>(BaseModel):
+    title: str; author: str; year: int; rating: float = <span class="num">0.0</span>
+
+@app.post(<span class="str">"/books"</span>, status_code=<span class="num">201</span>)
+<span class="kw">def</span> <span class="fn">create</span>(book: Book):
+    <span class="kw">global</span> next_id
+    db[next_id] = book.model_dump(); record = {<span class="str">"id"</span>: next_id, **db[next_id]}
+    next_id += <span class="num">1</span>; <span class="kw">return</span> record
+
+@app.get(<span class="str">"/books/{book_id}"</span>)
+<span class="kw">def</span> <span class="fn">read</span>(book_id: int):
+    <span class="kw">if</span> book_id <span class="kw">not in</span> db: <span class="kw">raise</span> HTTPException(<span class="num">404</span>, <span class="str">"Book not found"</span>)
+    <span class="kw">return</span> {<span class="str">"id"</span>: book_id, **db[book_id]}
+
+@app.put(<span class="str">"/books/{book_id}"</span>)
+<span class="kw">def</span> <span class="fn">update</span>(book_id: int, book: Book):
+    <span class="kw">if</span> book_id <span class="kw">not in</span> db: <span class="kw">raise</span> HTTPException(<span class="num">404</span>, <span class="str">"Book not found"</span>)
+    db[book_id] = book.model_dump(); <span class="kw">return</span> {<span class="str">"id"</span>: book_id, **db[book_id]}
+
+@app.delete(<span class="str">"/books/{book_id}"</span>, status_code=<span class="num">204</span>)
+<span class="kw">def</span> <span class="fn">delete</span>(book_id: int):
+    <span class="kw">if</span> book_id <span class="kw">not in</span> db: <span class="kw">raise</span> HTTPException(<span class="num">404</span>, <span class="str">"Book not found"</span>)
+    <span class="kw">del</span> db[book_id]</code></pre>
+      </div>
+    </div>
+
+    <div class="fastapi-features">
+      <h3>⚡ What FastAPI Gives You for Free</h3>
+      <div class="features-grid">
+        <div class="feature-item"><span class="fi-icon">📄</span><strong>Auto OpenAPI Docs</strong><p>Swagger UI at <code>/docs</code> + ReDoc at <code>/redoc</code></p></div>
+        <div class="feature-item"><span class="fi-icon">✅</span><strong>Pydantic Validation</strong><p>Invalid data returns 422 with detailed error messages</p></div>
+        <div class="feature-item"><span class="fi-icon">🔧</span><strong>Type Safety</strong><p>Python type hints drive validation, serialization, docs</p></div>
+        <div class="feature-item"><span class="fi-icon">⚡</span><strong>Async Support</strong><p><code>async def</code> for non-blocking I/O operations</p></div>
+        <div class="feature-item"><span class="fi-icon">🔌</span><strong>Dependency Injection</strong><p>Reusable auth, DB sessions via <code>Depends()</code></p></div>
+        <div class="feature-item"><span class="fi-icon">🚀</span><strong>High Performance</strong><p>Powered by Starlette + Pydantic — comparable to Go/Node</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ LIVE PLAYGROUND ════ -->
+<section class="section playground-section" id="playground">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">🎮 Interactive</div>
+      <h2 class="section-title">API <span class="gradient-text">Playground</span></h2>
+      <p class="section-desc">Build and test HTTP requests directly in your browser using JSONPlaceholder — a free, public REST API for testing.</p>
+    </div>
+
+    <div class="playground-wrapper">
+      <div class="playground-request">
+        <h3>Request Builder</h3>
+        <div class="request-row">
+          <select id="pg-method" class="pg-select">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+            <option value="PUT">PUT</option>
+            <option value="DELETE">DELETE</option>
+          </select>
+          <select id="pg-endpoint" class="pg-select flex-1">
+            <option value="https://jsonplaceholder.typicode.com/posts">jsonplaceholder → /posts</option>
+            <option value="https://jsonplaceholder.typicode.com/posts/1">jsonplaceholder → /posts/1</option>
+            <option value="https://jsonplaceholder.typicode.com/users">jsonplaceholder → /users</option>
+            <option value="https://jsonplaceholder.typicode.com/users/1">jsonplaceholder → /users/1</option>
+            <option value="https://jsonplaceholder.typicode.com/posts/1/comments">jsonplaceholder → /posts/1/comments</option>
+            <option value="https://jsonplaceholder.typicode.com/todos">jsonplaceholder → /todos</option>
+            <option value="https://api.open-meteo.com/v1/forecast?latitude=27.7172&longitude=85.3240&current=temperature_2m,wind_speed_10m">Open-Meteo → Weather (Kathmandu)</option>
+          </select>
+          <button class="btn btn-primary" id="pg-send" onclick="sendPlaygroundRequest()">Send →</button>
+        </div>
+        <div class="pg-body-wrap" id="pg-body-wrap" style="display:none;">
+          <label>Request Body (JSON)</label>
+          <textarea id="pg-body" class="pg-textarea" placeholder='{"title": "My Post", "body": "Content here", "userId": 1}'></textarea>
+        </div>
+        <div class="pg-generated-curl" id="pg-curl-display"></div>
+      </div>
+      <div class="playground-response">
+        <h3>Response <span id="pg-status-badge" class="pg-status-inline"></span></h3>
+        <div class="pg-response-meta" id="pg-meta" style="display:none;">
+          <span id="pg-time">0ms</span>
+          <span id="pg-size">0 bytes</span>
+        </div>
+        <div class="pg-tabs">
+          <button class="pg-tab active" onclick="showPGTab('body', this)">Body</button>
+          <button class="pg-tab" onclick="showPGTab('headers', this)">Headers</button>
+          <button class="pg-tab" onclick="showPGTab('curl', this)">curl</button>
+        </div>
+        <div id="pg-response-body" class="pg-response-content">
+          <div class="pg-placeholder">↑ Send a request to see the response here</div>
+        </div>
+        <div id="pg-response-headers" class="pg-response-content" style="display:none;"></div>
+        <div id="pg-response-curl" class="pg-response-content" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ QUICK REFERENCE ════ -->
+<section class="section detail-section alt-bg" id="quick-ref">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">📌 Reference</div>
+      <h2 class="section-title">Quick Reference <span class="gradient-text">Cheatsheet</span></h2>
+    </div>
+
+    <div class="cheatsheet-grid">
+      <div class="cs-card">
+        <h4>🔧 Installation</h4>
+        <pre class="mini-code"><code>pip install requests
+pip install fastapi uvicorn
+pip install python-dotenv
+pip install httpx aiohttp</code></pre>
+      </div>
+
+      <div class="cs-card">
+        <h4>🌐 Basic GET</h4>
+        <pre class="mini-code"><code>r = requests.get(url, timeout=10)
+r.raise_for_status()
+data = r.json()
+# With params:
+r = requests.get(url, params={"page": 1})</code></pre>
+      </div>
+
+      <div class="cs-card">
+        <h4>📤 POST / PUT</h4>
+        <pre class="mini-code"><code>r = requests.post(url, json=payload)
+r = requests.put(url, json=payload)
+r = requests.patch(url, json=patch)
+r = requests.delete(url)</code></pre>
+      </div>
+
+      <div class="cs-card">
+        <h4>🔐 Auth Headers</h4>
+        <pre class="mini-code"><code>headers = {
+  "Authorization": f"Bearer {token}",
+  "X-API-Key": os.environ["API_KEY"],
+  "User-Agent": "MyApp/1.0",
+}</code></pre>
+      </div>
+
+      <div class="cs-card">
+        <h4>🛡️ Session (efficient)</h4>
+        <pre class="mini-code"><code>s = requests.Session()
+s.headers.update({"Authorization": ...})
+s.get(url1)  # Reuses connection
+s.get(url2)  # Auth header on all requests</code></pre>
+      </div>
+
+      <div class="cs-card">
+        <h4>🔄 Retry Adapter</h4>
+        <pre class="mini-code"><code>from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+retry = Retry(total=3, backoff_factor=1,
+  status_forcelist=[429, 500, 502, 503])
+s.mount("https://", HTTPAdapter(max_retries=retry))</code></pre>
+      </div>
+
+      <div class="cs-card">
+        <h4>⚡ Async (httpx)</h4>
+        <pre class="mini-code"><code>import httpx, asyncio
+
+async def fetch(url):
+    async with httpx.AsyncClient() as c:
+        r = await c.get(url, timeout=10)
+        return r.json()
+
+data = asyncio.run(fetch(url))</code></pre>
+      </div>
+
+      <div class="cs-card">
+        <h4>📄 Pagination</h4>
+        <pre class="mini-code"><code>all_data, page = [], 1
+while True:
+    r = requests.get(url, params={"page": page})
+    items = r.json()
+    if not items: break
+    all_data.extend(items)
+    page += 1</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">API<span class="accent">Mastery</span></span>
+      <p>Advanced API &amp; Web Mining for Data Science</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h5>Topics</h5>
+        <a href="#http-basics">HTTP Basics</a>
+        <a href="#auth">Authentication</a>
+        <a href="#endpoints">Endpoints</a>
+        <a href="#error-handling">Error Handling</a>
+        <a href="#rate-limits">Rate Limits</a>
+      </div>
+      <div class="footer-col">
+        <h5>Advanced</h5>
+        <a href="#json">JSON &amp; Data</a>
+        <a href="#security">Security</a>
+        <a href="#docs-reading">API Docs</a>
+        <a href="#testing">Testing</a>
+        <a href="#fastapi">FastAPI</a>
+      </div>
+      <div class="footer-col">
+        <h5>Resources</h5>
+        <a href="https://requests.readthedocs.io" target="_blank" rel="noopener">requests docs</a>
+        <a href="https://fastapi.tiangolo.com" target="_blank" rel="noopener">FastAPI docs</a>
+        <a href="https://jsonplaceholder.typicode.com" target="_blank" rel="noopener">JSONPlaceholder</a>
+        <a href="https://www.postman.com" target="_blank" rel="noopener">Postman</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Built with ❤️ for the <strong>Advanced API &amp; Web Mining for Data Science</strong> course.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
