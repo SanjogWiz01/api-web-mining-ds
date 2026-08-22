@@ -3,6 +3,7 @@ Application configuration using pydantic-settings.
 Loads values from environment variables or a .env file.
 """
 
+# pyrefly: ignore [missing-import]
 from pydantic_settings import BaseSettings
 
 
